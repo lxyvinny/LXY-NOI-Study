@@ -1,9 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 long long n, k, m, a[21], w[21], b[21];
 char c;
-
 // P：根据编号找排列（逆康托展开）
 void P() {
   cin >> m, m--;
@@ -11,21 +9,25 @@ void P() {
   // 依次确定第 i 位的数字
   for (int i = 1; i <= n; i++) {
     long long t = m / w[n - i], cnt = 0, now_ans = 0;  // t 表示第几个未使用数，cnt 表示有几个用过的数，now_ans 表示当前位的数值。
-    m %= w[i - 1];                                     // m 表示当前的位号更行剩余。
+    m %= w[n - i];                                     // m 表示当前的位号更行剩余。
     // 在 1 ~ n 中找第 t + 1 个未使用的数
     for (int j = 1; j <= n; j++) {
       if (!b[j]) {
         cnt++;
-        if (cnt == t + 1) {
-        }
+      }
+      if (cnt == t + 1) {
+        now_ans = j;
+        b[now_ans] = 1;
+        break;
       }
     }
+    cout << now_ans << ' ';
   }
   cout << '\n';
 }
 // Q：根据排列找编号（康托展开）
 void Q() {
-  int ans = 0;
+  long long ans = 0;
   fill(b + 1, b + n + 1, 0);
   for (int i = n; i >= 1; i--) {
     cin >> a[i];
