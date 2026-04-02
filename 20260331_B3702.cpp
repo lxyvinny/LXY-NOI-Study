@@ -1,14 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int kMaxN = 1e3;
+const int kMaxN = 1e3 + 1;
 int a[kMaxN][kMaxN][2], m, n, t[kMaxN][2], x, y;
 void Cout(int i, int j) {
+  cout << i << ' ' << j << '\n';
   if (!a[i][j][0] && !a[i][j][1]) {
     return;
-  } else {
-    cout << i << ' ' << j << '\n';
   }
-  Cout(i, j + 1);
+
+  Cout(a[i][j][0], a[i][j][1]);
 }
 int main() {
   cin >> m >> n >> x >> y;
