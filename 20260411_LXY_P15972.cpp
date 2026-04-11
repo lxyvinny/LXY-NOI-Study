@@ -10,18 +10,10 @@ int main() {
     cin >> t1 >> t2;
     cnt[t1] += t1 != t2, cnt[t2] += t2 != t1, u[i] = t1, v[i] = t2;
   }
-  for (int i0 = 1; i0 <= m; i0++) {
-    for (int j0 = 1; j0 <= m; j++) {
-      for (int i1 = 1; i1 <= m; i1++) {
-        for (int j1 = 1; j1 <= m; j1++) {
-        }
-      }
-    }
-  }
-  // cout << (*max_element(cnt, cnt + kL) + 1) % 3435;
+  cout << (*max_element(cnt, cnt + kL) + 1) % 3435;
   return 0;
 }
-
+// 把所有临点排序。
 /*
 1.把所有的绳子（边）看一遍。
 2.去掉那些“自己连自己”的绳子。
