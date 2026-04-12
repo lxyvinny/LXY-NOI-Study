@@ -2,22 +2,30 @@
 using namespace std;
 const int kL = 1e4 + 1;
 int n, m;
+long long ans;  // 结果可能很大，用 long long
 vector<int> a[kL];
 int main() {
   cin >> n >> m;
   for (int i = 1; i <= m; i++) {
     int u, v;
-      cin >> u >> v, a[u].push_back(v), a[v].push_back(u);
+    cin >> u >> v, a[u].push_back(v), a[v].push_back(u);
   }
+  // 遍历每一个点 i，将其作为路径中的第二个点 v
   for (int i = 1; i <= n; i++) {
-    for (int j = 1; j <= n; j++) {
-      if (j != i) {
-        cout << i << ' ' << j << '\n';
-      }
+    for (int k = 0; k < a[i].size(); k++) {  // 遍历 i 的邻居 j，边 (i, j) 即为中间边
+      // 以 i-j 为中间边的路径数 = (i的度数-1) * (j的度数-1)
+      ans += (long long)(a[i].size() - 1) * (a[j].size() - 1);
     }
   }
+  cout << ans;
   return 0;
 }
+
+/*
+图的存储：首先使用邻接表存储每个节点的邻接节点。
+枚举边：对于每一条边 (u, v)，遍历 u 和 v 的邻接节点，寻找符合要求的路径。
+计算路径数量：计算符合要求的路径数。
+*/
 
 /*
 二、算法实战：网络寻路（路径计数）
@@ -35,4 +43,30 @@ int main() {
 合法性判定：在枚举出路径 A-B-C-D 后，需检查中间节点 B 和 C 是否与端点 A 或 D 重合，以及 B 和 C 是否重合，
 确保路径满足“中间节点互异且不与端点重合”的条件。
 
+*/
+
+/*
+#include <bits/stdc++.h>
+using namespace std;
+const int kL = 1e4 + 1;
+int n, m, ans;
+vector<int> a[kL];
+int main() {
+  cin >> n >> m;
+  for (int i = 1; i <= m; i++) {
+    int u, v;
+    cin >> u >> v, a[u].push_back(v), a[v].push_back(u);
+  }
+  for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= n; j++) {
+      for (int k = 1; k <= n; k++) {
+        if (i != j && i != k && ) {
+          ans++;
+        }
+      }
+    }
+  }
+  cout << ans;
+  return 0;
+}
 */
