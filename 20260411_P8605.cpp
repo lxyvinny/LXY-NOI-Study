@@ -13,7 +13,8 @@ int main() {
   // 遍历每一个点 i，将其作为路径中的第二个点 v
   for (int i = 1; i <= n; i++) {
     for (int k = 0; k < a[i].size(); k++) {  // 遍历 i 的邻居 j，边 (i, j) 即为中间边
-      // 以 i-j 为中间边的路径数 = (i的度数-1) * (j的度数-1)
+      // 以 i-j 为中间边的路径数 = (i的度数 - 1) * (j的度数 - 1)
+      int j = a[i][k];
       ans += (long long)(a[i].size() - 1) * (a[j].size() - 1);
     }
   }
